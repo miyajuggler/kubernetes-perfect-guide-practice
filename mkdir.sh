@@ -1,1 +1,1 @@
-mkdir {01..15} && touch {01..15}/memo.md
+mkdir {01..15} && mkdir {01..15}/image && touch {01..15}/memo.md

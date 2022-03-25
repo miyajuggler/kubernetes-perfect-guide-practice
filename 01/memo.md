@@ -38,8 +38,8 @@ docker build (docker image build)
 
 ```sh
 $ docker image ls
-REPOSITORY        TAG               IMAGE ID       CREATED          SIZE
-sample-image      0.1               6101110fdc81   30 seconds ago   371MB
+REPOSITORY        TAG   IMAGE ID       CREATED          SIZE
+sample-image      0.1   6101110fdc81   30 seconds ago   371MB
 ```
 
 しかしこれだとサイズが無駄にでかい。中身としては golang という Go のコンパイルツールが有るためこれだけでかくなる。  
@@ -71,10 +71,10 @@ ENTRYPOINT ["./go-app"]
 # マルチステージ用の dockerfile を指定する
 $ docker image build -t sample-image:0.2 -f Dockerfile-MultiStage .
 
-$ docker image ls        5s
-REPOSITORY        TAG               IMAGE ID       CREATED          SIZE
-sample-image      0.2               6f65e66ef46e   7 seconds ago    12.5MB
-sample-image      0.1               6101110fdc81   29 minutes ago   371MB
+$ docker image ls 
+REPOSITORY        TAG   IMAGE ID       CREATED          SIZE
+sample-image      0.2   6f65e66ef46e   7 seconds ago    12.5MB
+sample-image      0.1   6101110fdc81   29 minutes ago   371MB
 ```
 
 ### 他

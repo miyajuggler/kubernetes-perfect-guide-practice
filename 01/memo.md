@@ -1,3 +1,25 @@
+## 学習を始める前の環境
+
+```sh
+$ kubectl get node
+NAME             STATUS   ROLES                  AGE    VERSION
+docker-desktop   Ready    control-plane,master   117d   v1.21.2
+
+$ kubectl cluster-info
+Kubernetes control plane is running at https://kubernetes.docker.internal:6443
+CoreDNS is running at https://kubernetes.docker.internal:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.3", GitCommit:"ca643a4d1f7bfe34773c74f79527be4afd95bf39", GitTreeState:"clean", BuildDate:"2021-07-15T21:04:39Z", GoVersion:"go1.16.6", Compiler:"gc", Platform:"darwin/amd64"}
+Server Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.2", GitCommit:"092fbfbf53427de67cac1e9fa54aaa09a28371d7", GitTreeState:"clean", BuildDate:"2021-06-16T12:53:14Z", GoVersion:"go1.16.5", Compiler:"gc", Platform:"linux/arm64"}
+
+$ kubectl version --short --client
+Client Version: v1.21.3
+
+$ kubectl config current-context
+docker-desktop
+```
+
 ### kubernetes を利用する際も docker について必ず学んておいたほうが良い知識
 
 - コンテナの設計
@@ -71,7 +93,7 @@ ENTRYPOINT ["./go-app"]
 # マルチステージ用の dockerfile を指定する
 $ docker image build -t sample-image:0.2 -f Dockerfile-MultiStage .
 
-$ docker image ls 
+$ docker image ls
 REPOSITORY        TAG   IMAGE ID       CREATED          SIZE
 sample-image      0.2   6f65e66ef46e   7 seconds ago    12.5MB
 sample-image      0.1   6101110fdc81   29 minutes ago   371MB

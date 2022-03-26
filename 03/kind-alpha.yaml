@@ -1,0 +1,43 @@
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+kubeadmConfigPatches:
+  - |
+    apiVersion: kubeadm.k8s.io/v1beta2
+    kind: ClusterConfiguration
+    metadata:
+      name: config
+    apiServer:
+      extraArgs:
+        "feature-gates": "EphemeralContainers=true,HPAScaleToZero=true,TTLAfterFinished=true,ServiceTopology=true,ImmutableEphemeralVolumes=true"
+    scheduler:
+      extraArgs:
+        "feature-gates": "EphemeralContainers=true,HPAScaleToZero=true,TTLAfterFinished=true,ServiceTopology=true,NonPreemptingPriority=true"
+    controllerManager:
+      extraArgs:
+        "feature-gates": "HPAScaleToZero=true,TTLAfterFinished=true,ImmutableEphemeralVolumes=true"
+  - |
+    apiVersion: kubelet.config.k8s.io/v1beta1
+    kind: KubeletConfiguration
+    featureGates:
+      EphemeralContainers: true
+      HPAScaleToZero: true
+      TTLAfterFinished: true
+      ServiceTopology: true
+  - |
+    apiVersion: kubeproxy.config.k8s.io/v1alpha1
+    kind: KubeProxyConfiguration
+    featureGates:
+      EphemeralContainers: true
+      HPAScaleToZero: true
+      TTLAfterFinished: true
+      ServiceTopology: true
+      EndpointSliceProxying: true
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6
+  - role: control-plane
+    image: kindest/node:v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6
+  - role: worker
+    image: kindest/node:v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6
+  - role: worker
+    image: kindest/node:v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6
